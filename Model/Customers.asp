@@ -1,55 +1,55 @@
 <%
     Class Customer  
         'Properties      
-        Private _IdCustomer
-        Private _CompanyName
-        Private _ContactName
-        Private _City
-        Private _Phone
+        Private IdCustomer
+        Private CompanyName
+        Private ContactName
+        Private City
+        Private Phone
         
-        'Get and Set of _IdCustomer
+        'Get and Set of IdCustomer
         public Property Let SetIdCustomer(id)
-            _IdCustomer = id
+            IdCustomer = id
         End Property
 
         public Property Get GetIdCustomer()
-            GetIdCustomer = _IdCustomer
+            GetIdCustomer = IdCustomer
         End Property
 
-        'Get and Set of _CompanyName
+        'Get and Set of CompanyName
         public Property Let SetCompanyName(company)
-            _CompanyName = company
+            CompanyName = company
         End Property
 
         public Property Get GetCompanyName()
-            GetCompanyName = _CompanyName
+            GetCompanyName = CompanyName
         End Property
 
-        'Get and Set of _ContactName
+        'Get and Set of ContactName
         public Property Let SetContactName(contact)
-            _ContactName = contact
+            ContactName = contact
         End Property
 
-        public Property Get GetCompanyName()
-            GetCompanyName = _ContactName
+        public Property Get GetContactName()
+            GetCompanyName = ContactName
         End Property
 
-        'Get and Set of _IdCustomer
+        'Get and Set of IdCustomer
         public Property Let SetCity(city)
-            _City = city
+            City = city
         End Property
 
         public Property Get GetCity()
-            GetCity = _City
+            GetCity = City
         End Property
 
-        'Get and Set of _IdCustomer
+        'Get and Set of IdCustomer
         public Property Let SetPhone(phone)
-            _Phone = phone
+            Phone = phone
         End Property
 
         public Property Get GetPhone()
-            GetPhone = _Phone
+            GetPhone = Phone
         End Property
 
     End Class

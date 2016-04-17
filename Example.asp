@@ -49,7 +49,7 @@
             'if there are records then loop through the fields 
                 Do While NOT Recordset.EOF
                     Response.write("<tr>")
-                    Response.write("<td>" & Recordset("ContactName") & "</td>")
+                    Response.write("<td>" & Recordset("ContactName").Value & "</td>")
                     Response.write("<td>" & Recordset("CompanyName") & "</td>")
                     Response.write("<td>" & Recordset("ContactTitle") & "</td>")
                     Response.write("</tr>")
