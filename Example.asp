@@ -26,7 +26,7 @@
         'create an instance of the ADO connection and recordset objects
         Set Connection = Server.CreateObject("ADODB.Connection")
         Set Recordset = Server.CreateObject("ADODB.Recordset")
-
+            
         'Open the connection to the database
         Connection.Open ConnString
 

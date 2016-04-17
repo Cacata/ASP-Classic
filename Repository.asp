@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-
-    </head>
-    <body>
-        <!--#include file="Global.asa"-->
-        <% 
-
-            set abc = Server.CreateObject("MS.Ad.T4")
-
-            Response.Write(abc.correr("Armando"))
-        %>
-    </body>
-</html>
+<!--#include virtual="Object.asp"-->
+<%             
+    yo.NewName = "Jesus"
+    Response.Write(yo.MyName)
+%>

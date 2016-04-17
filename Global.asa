@@ -1,9 +1,3 @@
-<object runat="server" scope="session" id="MyAd" progid="MSWC.AdRotator">
-    <!--Sub Correr(nom)
-        Correr nom & " está corriendo."
-    End Sub-->
-</object>
-
 <script language="vbscript" runat="server">
 Sub Application_OnStart
     Application("visitors")=0

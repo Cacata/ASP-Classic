@@ -1,13 +1,13 @@
 <%
-    Class Myclass()        
-        Private myname = "Armando"
+    Class Myclass        
+        Private my_name
         
         public Property Let NewName(name)
-            myname = name
+            my_name = name
         End Property
 
         public Property Get MyName()
-            MyName = myname
+            MyName = my_name
         End Property
 
         Sub correr(nom)
@@ -20,5 +20,4 @@
     End Class
 
     Set yo = new Myclass
-    
 %>
