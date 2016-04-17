@@ -17,7 +17,7 @@
     'Function RunSQLReturnRS(sqlstmt, params())
     Function GetQuery(sqlstmt)
         On Error Resume next
-
+        
         'Create the ADO objects
         Dim rs , cmd
         Set rs = server.createobject("ADODB.Recordset")
@@ -36,16 +36,16 @@
         rs.CursorLocation = adUseClient
         rs.Open cmd, , adOpenForwardOnly, adLockReadOnly
 
-        If err.number > 0 then
-            BuildErrorMessage()
-            exit function
-        end if
+        'If err.number > 0 then
+        '    BuildErrorMessage()
+        '    exit function
+        'end if
 
         'Disconnect the recordset
         Set cmd.ActiveConnection = Nothing
         Set cmd = Nothing
         Set rs.ActiveConnection = Nothing
-
+        
         'Return the resultant recordset
         Set GetQuery = rs
     End Function
