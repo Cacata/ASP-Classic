@@ -19,16 +19,30 @@
         customersRecordSet.MoveFirst()
         count = 0
         Do While NOT customersRecordSet.EOF
-            Response.Write(count)
+            'Response.Write(count)
             set customers(count) = new Customer
-            customers(count).SetIdCustomer = customersRecordSet("ContactName").Value
-            Response.Write(customers(count).GetIdCustomer())
+            customers(count).SetIdCustomer = customersRecordSet("CustomerID").Value
+            customers(count).SetCompanyName = customersRecordSet("CompanyName").Value
+            customers(count).SetContactName = customersRecordSet("ContactName").Value
+            customers(count).SetCity = customersRecordSet("City").Value
+            customers(count).SetPhone = customersRecordSet("Phone").Value
+            'Response.Write(customers(count).GetContactName())
             count = count + 1
             customersRecordSet.MoveNext()
         Loop
+        customersRecordSet.Close()
+        GetCustomers = customers
 
-        Do While NOT customersRecordSet.EOF
-            Response.Write("<br>" & customers(i).GetIdCustomer() & "<br>")
-        Loop
+        'Do While NOT customersRecordSet.EOF
+        '    Response.Write("<br>" & customers(count).GetIdCustomer() & " " & _
+        '                   customers(count).GetCompanyName() & " " & _
+        '                   customers(count).GetContactName() & " " & _
+        '                   customers(count).GetCity() & " " & _ 
+        '                   customers(count).GetPhone() & "<br>")
+        '    count = count - 1
+        '    customersRecordSet.MoveNext()
+        'Loop
+        
+        'customersRecordSet.Close()
     End Function
 %>
