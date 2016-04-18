@@ -35,8 +35,8 @@
         End Property
 
         'Get and Set of IdCustomer
-        public Property Let SetCity(city)
-            City = city
+        public Property Let SetCity(v_city)
+            City = v_city
         End Property
 
         public Property Get GetCity()
@@ -44,8 +44,8 @@
         End Property
 
         'Get and Set of IdCustomer
-        public Property Let SetPhone(phone)
-            Phone = phone
+        public Property Let SetPhone(v_phone)
+            Phone = v_phone
         End Property
 
         public Property Get GetPhone()
