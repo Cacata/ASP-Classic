@@ -1,5 +1,5 @@
 <%
-    Class Customer  
+    Public Class Customer  
         'Properties      
         Private IdCustomer
         Private CompanyName

@@ -1,9 +1,9 @@
 <!--#Include File="Base.asp"-->
 <!--#Include virtual="/Model/Customers.asp"-->
 <%
-    Class CustomersRepositry
+    Public Class CustomersRepositry
         
-        'Constructor de la clase
+        'Class Constructor
         private isConstructed
         private name
 
@@ -80,15 +80,14 @@
 
         'Edit Any Costumer
         Function UpdateCustomer(id, company, name, city, phone)
-            stmt = "INSERT Customers (customerID,companyname," _
-                 & "contactname,city,phone)" _
-                 & " VALUES ('" & id & "'," _
-                 & "'" & company & "'," _
-                 & "'" & name & "'," _
-                 & "'" & city & "'," _
-                 & "'" & phone & "')"
-            Result = MakeInsert(stmt)
-            AddCustomer = Result
+              sql = "UPDATE customers SET " _
+                    & "companyname='" & company & "'," _
+                    & "contactname='" & name & "'," _
+                    & "city='" & city & "'," _
+                    & "phone='" & phone & "'" _
+                    & " WHERE customerID='" & id & "'"
+              Result = MakeUpdate(sql)
+              UpdateCustomer = Result              
         End Function
         'End Edit
 
@@ -140,6 +139,7 @@
 
     set this = (new CustomersRepositry)("Armando")
     'this.GetCustomers()
-    R = this.SearchCustomer("TRAIH")
-    Response.Write(R)
+    S = this.UpdateCustomer("TRAIH","khjdfkhg","sdfgdfg","sdfghdsh","sdfasdfg")
+    'R = this.SearchCustomer("TRAIH")
+    Response.Write(S)
 %>
