@@ -6,7 +6,7 @@
         'Class Constructor
         private isConstructed
         private name
-
+        
         private sub Class_Initialize
             isConstructed = false
             name = null
@@ -141,7 +141,7 @@
     set this = (new CustomersRepositry)("Armando")
     'this.GetCustomers()
     Response.Write("Prueba de Update<br/>")
-    S = this.UpdateCustomer("TRAIH","khjdfkhg","sdfgdfg","sdfghdsh","sdfasdfg")
+    S = this.UpdateCustomer("TRYPH","khjdfkhg","sdfgdfg","sdfghdsh","sdfasdfg")
     'R = this.SearchCustomer("TRAIH")
     Response.Write(S)
 %>

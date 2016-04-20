@@ -1,4 +1,6 @@
 <%      
+    conn = GetConnection()
+
     Function GetConnection()
         'define the connection string
         ConnSTring = "Provider=SQLOLEDB; Data Source = (local); Initial Catalog = Northwind; Integrated Security=SSPI;"
@@ -19,7 +21,7 @@
     Function GetQuery(sqlstmt)
         'Create the ADO Recordset
         Set rs = server.createobject("ADODB.Recordset")
-        rs.Open sqlstmt,GetConnection()
+        rs.Open sqlstmt,conn
         
         'Return the resultant recordset
         Set GetQuery = rs
@@ -29,10 +31,8 @@
 
     'This function make insert to data base
     Function MakeInsert(sqlstmt)
-        on error resume next
         
         'Open the connection to the database
-        conn = GetConnection()
         conn.Execute sqlstmt,recaffected
 
         
@@ -49,7 +49,6 @@
 
     'This function make insert to data base
     Function MakeUpdate(sqlstmt)
-        on error resume next
 
         conn.Execute sql
 
@@ -70,7 +69,7 @@
         'Create the ADO objects
         Set rs = server.createobject("ADODB.Recordset")
 
-        rs.Open sqlstmt,GetConnection()
+        rs.Open sqlstmt,conn
         
         'Return the resultant recordset 809-699-2621 Juan Peña
         Set SearchRecord = rs
