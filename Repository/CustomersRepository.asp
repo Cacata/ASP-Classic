@@ -1,7 +1,7 @@
 <!--#Include File="Base.asp"-->
 <!--#Include virtual="/Model/Customers.asp"-->
 <%
-    Public Class CustomersRepositry
+    Class CustomersRepositry
         
         'Class Constructor
         private isConstructed
@@ -86,6 +86,7 @@
                     & "city='" & city & "'," _
                     & "phone='" & phone & "'" _
                     & " WHERE customerID='" & id & "'"
+              Response.Write(sql)
               Result = MakeUpdate(sql)
               UpdateCustomer = Result              
         End Function
@@ -139,6 +140,7 @@
 
     set this = (new CustomersRepositry)("Armando")
     'this.GetCustomers()
+    Response.Write("Prueba de Update<br/>")
     S = this.UpdateCustomer("TRAIH","khjdfkhg","sdfgdfg","sdfghdsh","sdfasdfg")
     'R = this.SearchCustomer("TRAIH")
     Response.Write(S)
