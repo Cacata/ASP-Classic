@@ -5,14 +5,11 @@
         
         'Class Constructor
         private isConstructed
-        private name
         
         private sub Class_Initialize
             isConstructed = false
-            name = null
         end sub
-        public default function construct(pName)
-            name = pName
+        public default function construct()
             set construct = me
             isConstructed = true
         end function    
@@ -138,10 +135,10 @@
         'End Search
     End Class
 
-    set this = (new CustomersRepositry)("Armando")
+    set this = (new CustomersRepositry)()
     'this.GetCustomers()
-    Response.Write("Prueba de Update<br/>")
-    S = this.UpdateCustomer("TRYPH","khjdfkhg","sdfgdfg","sdfghdsh","sdfasdfg")
+    Response.Write("Pruebas<br/>")
+    S = this.AddCustomer("TOYKI","La Quinta","Arturo","Bábaro","809-987-6452")
     'R = this.SearchCustomer("TRAIH")
     Response.Write(S)
 %>

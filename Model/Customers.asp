@@ -7,6 +7,18 @@
         Private City
         Private Phone
         
+        'private isConstructed
+        
+        'private sub Class_Initialize
+        '    isConstructed = false
+        'end sub
+
+        'public default function construct()
+        '    set construct = me
+        '    isConstructed = true
+        'end function  
+
+
         'Get and Set of IdCustomer
         public Property Let SetIdCustomer(id)
             IdCustomer = id
