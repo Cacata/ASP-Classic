@@ -72,9 +72,7 @@
             AddCustomer = Result
         End Function
         'End Add
-
-
-
+    
         'Edit Any Costumer
         Function UpdateCustomer(id, company, name, city, phone)
               sql = "UPDATE customers SET " _
@@ -83,13 +81,18 @@
                     & "city='" & city & "'," _
                     & "phone='" & phone & "'" _
                     & " WHERE customerID='" & id & "'"
-              Response.Write(sql)
               Result = MakeUpdate(sql)
               UpdateCustomer = Result              
         End Function
         'End Edit
 
-
+        'Delete Any Costumer
+        Function DeleteCustomer(id)
+            sql="DELETE FROM customers WHERE customerID='" & id & "'"
+            Result = DeleteOne(sql)
+            DeleteCustomer = Result
+        End Function    
+        'End Delete
 
         'Search some Costumer
         Function SearchCustomer(id)
@@ -135,10 +138,11 @@
         'End Search
     End Class
 
-    set this = (new CustomersRepositry)()
+    'set this = (new CustomersRepositry)()
     'this.GetCustomers()
-    Response.Write("Pruebas<br/>")
-    S = this.AddCustomer("TOYKI","La Quinta","Arturo","Bábaro","809-987-6452")
+    'Response.Write("Pruebas<br/>")
+    'S = this.AddCustomer("TOYKI","La Quinta","Arturo","Bábaro","809-987-6452")
+    'S = this.DeleteCustomer("TOYKI")
     'R = this.SearchCustomer("TRAIH")
-    Response.Write(S)
+    'Response.Write(S)
 %>

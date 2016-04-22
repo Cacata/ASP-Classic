@@ -47,7 +47,7 @@
 
 
 
-    'This function make insert to data base
+    'This function update one customer in database
     Function MakeUpdate(sqlstmt)
         Set conn = GetConnection()
 
@@ -57,6 +57,22 @@
             MakeUpdate = err.Source & " " & err.Description & " " & err.HelpContext
         else
             MakeUpdate = recaffected & " record added... " & err
+        end if
+
+        conn.close
+    End Function
+
+
+
+    'This function delete one customer in database
+    Function DeleteOne(sqlstmt)
+        Set conn = GetConnection()
+        conn.Execute sqlstmt
+
+        if err <> 0 then
+            DeleteOne = err.Source & " " & err.Description & " " & err.HelpContext
+        else
+            DeleteOne = recaffected & " record added... " & err
         end if
 
         conn.close

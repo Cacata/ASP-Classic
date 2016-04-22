@@ -8,7 +8,6 @@
         Private Phone
         
         'private isConstructed
-        
         'private sub Class_Initialize
         '    isConstructed = false
         'end sub
