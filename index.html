@@ -461,22 +461,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script type="text/javascript">
         $(function () {
-            $.get("Controllers/CustomersController.asp", { action: "list" }, function (response) {
-                $("#tcustomer tbody").append(response);
-            });
+            listCustomers();
+
             $("#btnAdd").click(function () {
                 $('#saveModal').modal('show');
             });
-            $('#saveModal').on('shown.bs.modal', function () {
+            //$('#saveModal').on('shown.bs.modal', function () {
                 
-            })
+            //})
 
             $("#btnSave").click(function () {
                 $.post("Controllers/CustomersController.asp?action=save", $(".box-body :input").serialize(), function (response) {
-                    alert("Saved");
+                    if (response.status == "true") {
+                        listCustomers();
+                    }
                 });
             });
         });
+
+        function listCustomers() {
+            $.get("Controllers/CustomersController.asp", { action: "list" }, function (response) {
+                $("#tcustomer tbody").empty();
+                $("#tcustomer tbody").append(response);
+            });
+        }
+
+        function removeCustom(element) {
+            $.post("Controllers/CustomersController.asp?action=delete", {
+                id:
+                    $(element).data("custom-id")
+            }, function (response) {
+                if (response.status == "true") {
+                    listCustomers();
+                }
+            });
+        }
+
     </script>
   </body>
 </html>
