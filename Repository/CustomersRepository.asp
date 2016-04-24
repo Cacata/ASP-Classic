@@ -2,7 +2,7 @@
 <!--#Include File="Validation.asp"-->
 <!--#Include virtual="/Model/Customers.asp"-->
 <%
-    Class CustomersRepositry
+    Class CustomersRepository
         
         'Class Constructor
         private isConstructed
@@ -45,8 +45,8 @@
                 count = count + 1
                 customersRecordSet.MoveNext()
             Loop
-            Response.Write("<br> El Select funciona! <br>")
             customersRecordSet.Close()
+            GetCustomers = customers
             'for i = 0 to count
             '    Response.Write("<br>" & customers(i).GetIdCustomer() & " " & _
             '                   customers(i).GetCompanyName() & " " & _
@@ -146,7 +146,7 @@
                     customersRecordSet.MoveNext()
                     count = count + 1
                 Loop
-            
+
                 Redim customers(count)
                 customersRecordSet.MoveFirst()
                 count = 0

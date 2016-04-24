@@ -1,8 +1,8 @@
 <%      
     Function GetConnection()
         'define the connection string
-        'ConnSTring = "Provider=SQLOLEDB; Data Source = (local); Initial Catalog = Northwind; Integrated Security=SSPI;"
-        ConnSTring = "DRIVER={SQL Server};Provider=MSDASQL.1;SERVER=(local); DATABASE=Northwind"
+        ConnSTring = "Provider=SQLOLEDB; Data Source = (local); Initial Catalog = Northwind; Integrated Security=SSPI;"
+        'ConnSTring = "DRIVER={SQL Server};Provider=MSDASQL.1;SERVER=(local); DATABASE=Northwind"
 
         'create an instance of the ADO connection objects
         Set Connection = Server.CreateObject("ADODB.Connection")
