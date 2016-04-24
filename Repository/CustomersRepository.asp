@@ -5,7 +5,7 @@
     Class CustomersRepository
         
         'Class Constructor
-        private isConstructed
+        private isConstructed     
         Dim validate
         
         private sub Class_Initialize
@@ -141,41 +141,30 @@
                 Dim customersRecordSet
                 set customersRecordSet = SearchRecord(stmt) 
                 Dim customers
-                int count = 0
-                Do While NOT customersRecordSet.EOF
-                    customersRecordSet.MoveNext()
-                    count = count + 1
-                Loop
 
-                Redim customers(count)
-                customersRecordSet.MoveFirst()
-                count = 0
-                Do While NOT customersRecordSet.EOF
-                    'Response.Write(count)
-                    set customers(count) = new Customer
-                    customers(count).SetIdCustomer = customersRecordSet("CustomerID").Value
-                    customers(count).SetCompanyName = customersRecordSet("CompanyName").Value
-                    customers(count).SetContactName = customersRecordSet("ContactName").Value
-                    customers(count).SetCity = customersRecordSet("City").Value
-                    customers(count).SetPhone = customersRecordSet("Phone").Value
-                    'Response.Write(customers(count).GetContactName())
-                    count = count + 1
-                    customersRecordSet.MoveNext()
-                Loop
-                Response.Write("<br> El Select funciona! <br>")
+                set customers = new Customer
+                customers.SetIdCustomer = customersRecordSet("CustomerID").Value
+                customers.SetCompanyName = customersRecordSet("CompanyName").Value
+                customers.SetContactName = customersRecordSet("ContactName").Value
+                customers.SetCity = customersRecordSet("City").Value
+                customers.SetPhone = customersRecordSet("Phone").Value
+
+                SearchCustomer = customers
                 customersRecordSet.Close()
-                'for i = 0 to count
-                '    Response.Write("<br>" & customers(i).GetIdCustomer() & " " & _
-                '                   customers(i).GetCompanyName() & " " & _
-                '                   customers(i).GetContactName() & " " & _
-                '                   customers(i).GetCity() & " " & _ 
-                '                   customers(i).GetPhone() & "<br>")
-                '    if i = count -1 Then
-                '        i = 100
-                '    End if
-                'next
             End if
         End Function
         'End Search
     End Class
+
+    'Dim usuario
+    'prueba()
+    'Sub prueba()
+    '    set usuario = new Customer
+    '    Response.Write(TypeName(usuario)  & "<br/>")
+    '    exa(abc)
+    'End Sub
+    'Function exa(a)
+    '    exa = Response.Write(a & "En la funcion de ejemplo <br/>")
+    'End Function
+    'Response.Write("El ultimo" & "<br/>")
 %>
