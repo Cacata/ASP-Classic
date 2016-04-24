@@ -1,10 +1,12 @@
 <!--#Include File="Base.asp"-->
+<!--#Include File="Validation.asp"-->
 <!--#Include virtual="/Model/Customers.asp"-->
 <%
     Class CustomersRepositry
         
         'Class Constructor
         private isConstructed
+        Dim validate
         
         private sub Class_Initialize
             isConstructed = false
@@ -61,88 +63,119 @@
 
         'Add new Costumer
         Function AddCustomer(id, company, name, city, phone)
-            stmt = "INSERT INTO Customers (customerID,companyname," _
-                 & "contactname,city,phone)" _
-                 & " VALUES ('" & id & "'," _
-                 & "'" & company & "'," _
-                 & "'" & name & "'," _
-                 & "'" & city & "'," _
-                 & "'" & phone & "');"
-            Result = MakeInsert(stmt)
-            AddCustomer = Result
+            'Validate values
+            if validate.ValString(id) = false then
+                AddCustomer = "Id "& id &" value isn´t string"
+            elseif validate.ValString(company) = false then
+                AddCustomer = "company "& company &" value isn´t string"
+            elseif validate.ValString(name) = false then
+                AddCustomer = "name "& name &" value isn´t string"
+            elseif validate.ValString(city) = false then
+                AddCustomer = "city "& city &" value isn´t string"
+            elseif validate.ValString(phone) = false then
+                AddCustomer = "phone "& phone &" value isn´t string"
+            else
+                stmt = "INSERT INTO Customers (customerID,companyname," _
+                    & "contactname,city,phone)" _
+                    & " VALUES ('" & id & "'," _
+                    & "'" & company & "'," _
+                    & "'" & name & "'," _
+                    & "'" & city & "'," _
+                    & "'" & phone & "');"
+                Result = MakeInsert(stmt)
+                AddCustomer = Result
+            End if         
         End Function
         'End Add
     
         'Edit Any Costumer
         Function UpdateCustomer(id, company, name, city, phone)
-              sql = "UPDATE customers SET " _
+            set validate = new Validation
+
+            'Validate values
+            if validate.ValString(id) = false then
+                UpdateCustomer = "Id "& id &" value isn´t string"
+            elseif validate.ValString(company) = false then
+                UpdateCustomer = "company "& company &" value isn´t string"
+            elseif validate.ValString(name) = false then
+                UpdateCustomer = "name "& name &" value isn´t string"
+            elseif validate.ValString(city) = false then
+                UpdateCustomer = "city "& city &" value isn´t string"
+            elseif validate.ValString(phone) = false then
+                UpdateCustomer = "phone "& phone &" value isn´t string"
+            else
+                sql = "UPDATE customers SET " _
                     & "companyname='" & company & "'," _
                     & "contactname='" & name & "'," _
                     & "city='" & city & "'," _
                     & "phone='" & phone & "'" _
                     & " WHERE customerID='" & id & "'"
-              Result = MakeUpdate(sql)
-              UpdateCustomer = Result              
+                Result = MakeUpdate(sql)
+                UpdateCustomer = Result 
+            End if      
         End Function
         'End Edit
 
         'Delete Any Costumer
         Function DeleteCustomer(id)
-            sql="DELETE FROM customers WHERE customerID='" & id & "'"
-            Result = DeleteOne(sql)
-            DeleteCustomer = Result
+            set validate = new Validation
+            if validate.ValString(id) = false then
+                DeleteCustomer = "Id "& id &" value isn´t string"
+            else
+                sql="DELETE FROM customers WHERE customerID='" & id & "'"
+                Result = DeleteOne(sql)
+                DeleteCustomer = Result
+            End if            
         End Function    
         'End Delete
 
         'Search some Costumer
         Function SearchCustomer(id)
-            stmt = "SELECT * FROM customers WHERE customerID='" & id & "'"
-            Dim customersRecordSet
-            set customersRecordSet = SearchRecord(stmt)
+            set validate = new Validation
 
-            Dim customers
-            int count = 0
-            Do While NOT customersRecordSet.EOF
-                customersRecordSet.MoveNext()
-                count = count + 1
-            Loop
+            'Validate id value
+            if validate.ValString(id) = false then
+                SearchCustomer = "Id "& id &" value isn´t string"
+            else
+                stmt = "SELECT * FROM customers WHERE customerID='" & id & "'"
+                Dim customersRecordSet
+                set customersRecordSet = SearchRecord(stmt) 
+                Dim customers
+                int count = 0
+                Do While NOT customersRecordSet.EOF
+                    customersRecordSet.MoveNext()
+                    count = count + 1
+                Loop
             
-            Redim customers(count)
-            customersRecordSet.MoveFirst()
-            count = 0
-            Do While NOT customersRecordSet.EOF
-                'Response.Write(count)
-                set customers(count) = new Customer
-                customers(count).SetIdCustomer = customersRecordSet("CustomerID").Value
-                customers(count).SetCompanyName = customersRecordSet("CompanyName").Value
-                customers(count).SetContactName = customersRecordSet("ContactName").Value
-                customers(count).SetCity = customersRecordSet("City").Value
-                customers(count).SetPhone = customersRecordSet("Phone").Value
-                'Response.Write(customers(count).GetContactName())
-                count = count + 1
-                customersRecordSet.MoveNext()
-            Loop
-            Response.Write("<br> El Select funciona! <br>")
-            customersRecordSet.Close()
-            'for i = 0 to count
-            '    Response.Write("<br>" & customers(i).GetIdCustomer() & " " & _
-            '                   customers(i).GetCompanyName() & " " & _
-            '                   customers(i).GetContactName() & " " & _
-            '                   customers(i).GetCity() & " " & _ 
-            '                   customers(i).GetPhone() & "<br>")
-            '    if i = count -1 Then
-            '        i = 100
-            '    End if
-            'next
+                Redim customers(count)
+                customersRecordSet.MoveFirst()
+                count = 0
+                Do While NOT customersRecordSet.EOF
+                    'Response.Write(count)
+                    set customers(count) = new Customer
+                    customers(count).SetIdCustomer = customersRecordSet("CustomerID").Value
+                    customers(count).SetCompanyName = customersRecordSet("CompanyName").Value
+                    customers(count).SetContactName = customersRecordSet("ContactName").Value
+                    customers(count).SetCity = customersRecordSet("City").Value
+                    customers(count).SetPhone = customersRecordSet("Phone").Value
+                    'Response.Write(customers(count).GetContactName())
+                    count = count + 1
+                    customersRecordSet.MoveNext()
+                Loop
+                Response.Write("<br> El Select funciona! <br>")
+                customersRecordSet.Close()
+                'for i = 0 to count
+                '    Response.Write("<br>" & customers(i).GetIdCustomer() & " " & _
+                '                   customers(i).GetCompanyName() & " " & _
+                '                   customers(i).GetContactName() & " " & _
+                '                   customers(i).GetCity() & " " & _ 
+                '                   customers(i).GetPhone() & "<br>")
+                '    if i = count -1 Then
+                '        i = 100
+                '    End if
+                'next
+            End if
         End Function
         'End Search
     End Class
-
-    'set this = (new CustomersRepositry)()
-    'this.GetCustomers()
-    'Response.Write("Pruebas<br/>")
-    'S = this.AddCustomer("TOYKI","La Quinta","Arturo","Bábaro","809-987-6452")
-    'S = this.DeleteCustomer("TOYKI")
-    'R = this.SearchCustomer("TRAIH")
-    'Response.Write(S)
 %>
