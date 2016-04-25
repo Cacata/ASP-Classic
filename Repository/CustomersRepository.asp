@@ -64,8 +64,8 @@
         'Add new Costumer
         Function AddCustomer(id, company, name, city, phone)
             'Validate values
-            Dim validate
-            set validate = new Validation
+            Response.Write("Here")
+            set validate = new Validations
             if validate.ValString(id) = false then
                 AddCustomer = "Id "& id &" value isn´t string"
             elseif validate.ValString(company) = false then
@@ -84,6 +84,7 @@
                     & "'" & name & "'," _
                     & "'" & city & "'," _
                     & "'" & phone & "');"
+                Response.Write(stmt)
                 Result = MakeInsert(stmt)
                 AddCustomer = Result
             End if         
