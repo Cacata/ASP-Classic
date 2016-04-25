@@ -26,6 +26,10 @@
     if Request.ServerVariables("REQUEST_METHOD")= "POST" then
         DeleteCustomer()
     end if
+    case "get"
+    if Request.ServerVariables("REQUEST_METHOD")= "GET" then
+        GetById()
+    end if
     case "update"
 
    end select
@@ -51,6 +55,17 @@
             next
             
         End If
+    End Function
+
+    Function GetById()
+     Dim id 
+     set id = Request.QueryString("Id")
+      customer = repository.SearchCustomer(id)
+      member("IdCustomer") = customer.GetIdCustomer
+      member("CompanyName") = customer.GetCompanyName
+      member("ContactName") =  customer.ContactName
+      member("City") = customer.GetCity
+      member("Phone") = customer.GetPhone
     End Function
 
     'Save Customer

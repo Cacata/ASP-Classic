@@ -64,19 +64,7 @@
         'Add new Costumer
         Function AddCustomer(id, company, name, city, phone)
             'Validate values
-            Response.Write("Here")
-            set validate = new Validations
-            if validate.ValString(id) = false then
-                AddCustomer = "Id "& id &" value isn´t string"
-            elseif validate.ValString(company) = false then
-                AddCustomer = "company "& company &" value isn´t string"
-            elseif validate.ValString(name) = false then
-                AddCustomer = "name "& name &" value isn´t string"
-            elseif validate.ValString(city) = false then
-                AddCustomer = "city "& city &" value isn´t string"
-            elseif validate.ValString(phone) = false then
-                AddCustomer = "phone "& phone &" value isn´t string"
-            else
+
                 stmt = "INSERT INTO Customers (customerID,companyname," _
                     & "contactname,city,phone)" _
                     & " VALUES ('" & id & "'," _
@@ -87,7 +75,7 @@
                 Response.Write(stmt)
                 Result = MakeInsert(stmt)
                 AddCustomer = Result
-            End if         
+
         End Function
         'End Add
     
@@ -134,7 +122,7 @@
 
         'Search some Costumer
         Function SearchCustomer(id)
-            set validate = new Validation
+            set validate = new Validations
 
             'Validate id value
             if validate.ValString(id) = false then
