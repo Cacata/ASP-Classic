@@ -58,12 +58,14 @@
       Dim customer 
       set customer = new Customer
         '(id, company, name, city, phone)
-        customer.SetCompanyName = Request.Form("CustomerId")
-        customer.SetContactName = Request.Form("CompanyName")
+        customer.SetIdCustomer = Request.Form("CustomerId")
+        customer.SetCompanyName = Request.Form("CompanyName")
         customer.SetContactName = Request.Form("ContactName")
-        customer.SetContactName = Request.Form("CityName")
-        customer.SetContactName = Request.Form("Phone")
-        'repository.AddCustomer(customer)
+        customer.SetCity = Request.Form("CityName")
+        customer.SetPhone = Request.Form("Phone")
+        
+        'repository.AddCustomer customer.GetIdCustomer, customer.GetCompanyName(), customer.GetContactName(), customer.GetCity(), customer.GetPhone()
+        call repository.AddCustomer(customer.GetIdCustomer, customer.GetCompanyName(), customer.GetContactName(), customer.GetCity(), customer.GetPhone())
         member("status") = "true"
         member.Flush
     End Function

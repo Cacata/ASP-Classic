@@ -486,6 +486,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
         }
 
+        function getCustomerId(element) {
+            $.get("Controllers/CustomersController.asp?action=get",
+                { id: $(element).data("custom-id") }, function (response) {
+                    //Views and Response
+
+
+                });
+        }
+
         function removeCustom(element) {
             $.post("Controllers/CustomersController.asp?action=delete", {
                 id:
