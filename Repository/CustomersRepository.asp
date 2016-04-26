@@ -65,14 +65,13 @@
         Function AddCustomer(id, company, name, city, phone)
             'Validate values
 
-                stmt = "INSERT INTO Customers (customerID,companyname," _
-                    & "contactname,city,phone)" _
+                stmt = "INSERT INTO Customers (customerID, companyname," _
+                    & "contactname, city, phone)" _
                     & " VALUES ('" & id & "'," _
                     & "'" & company & "'," _
                     & "'" & name & "'," _
                     & "'" & city & "'," _
                     & "'" & phone & "');"
-                Response.Write(stmt)
                 Result = MakeInsert(stmt)
                 AddCustomer = Result
 
@@ -121,28 +120,30 @@
         'End Delete
 
         'Search some Costumer
-        Function SearchCustomer(id)
+        Function GetCustomer(id)
             set validate = new Validations
 
             'Validate id value
-            if validate.ValString(id) = false then
-                SearchCustomer = "Id "& id &" value isn´t string"
-            else
+            'if validate.ValString(id) = false then
+         '       SearchCustomer = "Id "& id &" value isn´t string"
+          '      Response.Write(SearchCustomer) 
+          '  else
                 stmt = "SELECT * FROM customers WHERE customerID='" & id & "'"
                 Dim customersRecordSet
                 set customersRecordSet = SearchRecord(stmt) 
                 Dim customers
-
                 set customers = new Customer
+
                 customers.SetIdCustomer = customersRecordSet("CustomerID").Value
                 customers.SetCompanyName = customersRecordSet("CompanyName").Value
                 customers.SetContactName = customersRecordSet("ContactName").Value
                 customers.SetCity = customersRecordSet("City").Value
                 customers.SetPhone = customersRecordSet("Phone").Value
-
-                SearchCustomer = customers
+                
                 customersRecordSet.Close()
-            End if
+                GetCustomer = customers
+              
+        '    End if
         End Function
         'End Search
     End Class

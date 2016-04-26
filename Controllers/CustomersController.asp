@@ -48,7 +48,7 @@
                     Response.Write("<td>"+ customer.GetContactName + "</td>")
                     Response.Write("<td>"+ customer.GetCity + "</td>")
                     Response.Write("<td>"+ customer.GetPhone + "</td>")
-                    Response.Write("<td><button class='btn btn-danger' onclick='removeCustom(this)' data-custom-id="+customer.GetIdCustomer+">Delete</button>      <button class='btn btn-warning'>Update</button></td>")
+                    Response.Write("<td><button class='btn btn-danger' onclick='removeCustom(this)' data-custom-id="+customer.GetIdCustomer+">Delete</button>      <button class='btn btn-warning'  onclick='getCustomerId(this)' data-custom-id="+customer.GetIdCustomer+">Editar</button></td>")
                     Response.Write("</tr>")
                 End if
                 i = i + 1
@@ -60,12 +60,14 @@
     Function GetById()
      Dim id 
      set id = Request.QueryString("Id")
-      customer = repository.SearchCustomer(id)
-      member("IdCustomer") = customer.GetIdCustomer
-      member("CompanyName") = customer.GetCompanyName
-      member("ContactName") =  customer.ContactName
-      member("City") = customer.GetCity
-      member("Phone") = customer.GetPhone
+     Dim customer 
+     customer = repository.GetCustomer(id)
+    Response.Write(customer)
+    '  member("IdCustomer") = customer.GetIdCustomer
+    '  member("CompanyName") = customer.GetCompanyName
+    '  member("ContactName") =  customer.ContactName
+    '  member("City") = customer.GetCity
+    '  member("Phone") = customer.GetPhone
     End Function
 
     'Save Customer
@@ -87,6 +89,7 @@
 
     Function DeleteCustomer()
       Response.Write("<br/> Delete: " + Request.Form("id"))
-      'repository.DeleteCustomer(Request.Form("id"))
+      set id = Request.Form("id")
+      repository.DeleteCustomer(id)
     End Function
  %>
