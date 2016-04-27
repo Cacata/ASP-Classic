@@ -121,13 +121,7 @@
 
         'Search some Costumer
         Function GetCustomer(id)
-            set validate = new Validations
-
-            'Validate id value
-            'if validate.ValString(id) = false then
-         '       SearchCustomer = "Id "& id &" value isn´t string"
-          '      Response.Write(SearchCustomer) 
-          '  else
+                Dim stmt 
                 stmt = "SELECT * FROM customers WHERE customerID='" & id & "'"
                 Dim customersRecordSet
                 set customersRecordSet = SearchRecord(stmt) 
@@ -141,22 +135,7 @@
                 customers.SetPhone = customersRecordSet("Phone").Value
                 
                 customersRecordSet.Close()
-                GetCustomer = customers
-              
-        '    End if
+                set GetCustomer = customers
         End Function
-        'End Search
     End Class
-
-    'Dim usuario
-    'prueba()
-    'Sub prueba()
-    '    set usuario = new Customer
-    '    Response.Write(TypeName(usuario)  & "<br/>")
-    '    exa(abc)
-    'End Sub
-    'Function exa(a)
-    '    exa = Response.Write(a & "En la funcion de ejemplo <br/>")
-    'End Function
-    'Response.Write("El ultimo" & "<br/>")
 %>

@@ -61,8 +61,8 @@
      Dim id 
      set id = Request.QueryString("Id")
      Dim customer 
-     customer = repository.GetCustomer(id)
-    Response.Write(customer)
+    set customer = repository.GetCustomer(id)
+    Response.Write(customer.GetCompanyName())
     '  member("IdCustomer") = customer.GetIdCustomer
     '  member("CompanyName") = customer.GetCompanyName
     '  member("ContactName") =  customer.ContactName
