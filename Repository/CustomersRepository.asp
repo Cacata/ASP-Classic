@@ -102,20 +102,20 @@
                     & " WHERE customerID='" & id & "'"
                 Result = MakeUpdate(sql)
                 UpdateCustomer = Result 
-            End if      
+            End if
         End Function
         'End Edit
 
         'Delete Any Costumer
         Function DeleteCustomer(id)
-            set validate = new Validation
-            if validate.ValString(id) = false then
-                DeleteCustomer = "Id "& id &" value isn´t string"
-            else
+            'set validate = new Validation
+            'if validate.ValString(id) = false then
+             '   DeleteCustomer = "Id "& id &" value isn´t string"
+            'else
                 sql="DELETE FROM customers WHERE customerID='" & id & "'"
                 Result = DeleteOne(sql)
                 DeleteCustomer = Result
-            End if            
+            'End if            
         End Function    
         'End Delete
 
@@ -136,6 +136,6 @@
                 
                 customersRecordSet.Close()
                 set SearchCustomer = customers
-        End Function        
+        End Function
     End Class
 %>
