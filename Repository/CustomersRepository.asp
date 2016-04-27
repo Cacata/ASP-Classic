@@ -7,6 +7,7 @@
         'Class Constructor
         private isConstructed     
         Dim validate
+        Dim ObjectFinded
         
         private sub Class_Initialize
             isConstructed = false
@@ -64,7 +65,6 @@
         'Add new Costumer
         Function AddCustomer(id, company, name, city, phone)
             'Validate values
-
                 stmt = "INSERT INTO Customers (customerID,companyname," _
                     & "contactname,city,phone)" _
                     & " VALUES ('" & id & "'," _
@@ -139,23 +139,11 @@
                 customers.SetContactName = customersRecordSet("ContactName").Value
                 customers.SetCity = customersRecordSet("City").Value
                 customers.SetPhone = customersRecordSet("Phone").Value
-
-                SearchCustomer = customers
+                
                 customersRecordSet.Close()
+                set SearchCustomer = customers        
             End if
         End Function
         'End Search
     End Class
-
-    'Dim usuario
-    'prueba()
-    'Sub prueba()
-    '    set usuario = new Customer
-    '    Response.Write(TypeName(usuario)  & "<br/>")
-    '    exa(abc)
-    'End Sub
-    'Function exa(a)
-    '    exa = Response.Write(a & "En la funcion de ejemplo <br/>")
-    'End Function
-    'Response.Write("El ultimo" & "<br/>")
 %>
