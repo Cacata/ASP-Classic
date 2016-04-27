@@ -80,7 +80,7 @@
     
         'Edit Any Costumer
         Function UpdateCustomer(id, company, name, city, phone)
-            set validate = new Validation
+            set validate = new Validations
 
             'Validate values
             if validate.ValString(id) = false then
@@ -135,8 +135,7 @@
                 customers.SetPhone = customersRecordSet("Phone").Value
                 
                 customersRecordSet.Close()
-                set SearchCustomer = customers        
-            End if
-        End Function
+                set SearchCustomer = customers
+        End Function        
     End Class
 %>
