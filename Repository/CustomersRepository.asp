@@ -136,7 +136,6 @@
                 
                 customersRecordSet.Close()
                 set SearchCustomer = customers        
-            End if
         End Function
     End Class
 %>

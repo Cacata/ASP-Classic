@@ -12,7 +12,7 @@
     set member = jsObject()
      
     'Call Action
-    member("action") = action
+    'member("action") = action
     
     select case LCase(action)
     case "list"
@@ -61,13 +61,14 @@
      Dim id 
      set id = Request.QueryString("Id")
      Dim customer 
-    set customer = repository.GetCustomer(id)
-    Response.Write(customer.GetCompanyName())
-    '  member("IdCustomer") = customer.GetIdCustomer
-    '  member("CompanyName") = customer.GetCompanyName
-    '  member("ContactName") =  customer.ContactName
-    '  member("City") = customer.GetCity
-    '  member("Phone") = customer.GetPhone
+     set customer = repository.SearchCustomer(id)
+    'Response.Write(customer.GetCompanyName())
+      member("IdCustomer") = customer.GetIdCustomer
+      member("CompanyName") = customer.GetCompanyName
+      member("ContactName") =  customer.GetContactName
+      member("City") = customer.GetCity
+      member("Phone") = customer.GetPhone
+      member.Flush()
     End Function
 
     'Save Customer

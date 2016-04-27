@@ -477,14 +477,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $("#btnSave").click(function () {
                 var modify = $("#Id").attr("readonly");
                 if (modify != "" && modify != undefined) {
-                    $.post("Controllers/CustomersController.asp?action=save", $(".box-body :input").serialize(), function (response) {
+
+                    $.post("Controllers/CustomersController.asp?action=update", $(".box-body :input").serialize(), function (response) {
                         if (response.status == "true") {
                             listCustomers();
                             $('#saveModal').modal('hide');
                         }
                     });
                 } else {
-                    $.post("Controllers/CustomersController.asp?action=update", $(".box-body :input").serialize(), function (response) {
+                    $.post("Controllers/CustomersController.asp?action=save", $(".box-body :input").serialize(), function (response) {
                         if (response.status == "true") {
                             listCustomers();
                             $('#saveModal').modal('hide');
@@ -502,7 +503,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
 
         function getCustomerId(element) {
-            $.get("Controllers/CustomersController.asp?action=get",
+            $.getJSON("Controllers/CustomersController.asp?action=get",
                 { id: $(element).data("custom-id") }, function (response) {
                     //Views and Response
                     console.log(response);
@@ -514,7 +515,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $("#City").val(response.City);
                     $("#Phone").val(response.Phone);
                     $(element).data("custom-id")
-
+                    $('#saveModal').modal('show');
                 });
         }
 
