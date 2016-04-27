@@ -80,20 +80,6 @@
     
         'Edit Any Costumer
         Function UpdateCustomer(id, company, name, city, phone)
-            set validate = new Validation
-
-            'Validate values
-            if validate.ValString(id) = false then
-                UpdateCustomer = "Id "& id &" value isn´t string"
-            elseif validate.ValString(company) = false then
-                UpdateCustomer = "company "& company &" value isn´t string"
-            elseif validate.ValString(name) = false then
-                UpdateCustomer = "name "& name &" value isn´t string"
-            elseif validate.ValString(city) = false then
-                UpdateCustomer = "city "& city &" value isn´t string"
-            elseif validate.ValString(phone) = false then
-                UpdateCustomer = "phone "& phone &" value isn´t string"
-            else
                 sql = "UPDATE customers SET " _
                     & "companyname='" & company & "'," _
                     & "contactname='" & name & "'," _
@@ -102,20 +88,20 @@
                     & " WHERE customerID='" & id & "'"
                 Result = MakeUpdate(sql)
                 UpdateCustomer = Result 
-            End if      
+          
         End Function
         'End Edit
 
         'Delete Any Costumer
         Function DeleteCustomer(id)
-            set validate = new Validation
-            if validate.ValString(id) = false then
-                DeleteCustomer = "Id "& id &" value isn´t string"
-            else
+            'set validate = new Validation
+            'if validate.ValString(id) = false then
+             '   DeleteCustomer = "Id "& id &" value isn´t string"
+            'else
                 sql="DELETE FROM customers WHERE customerID='" & id & "'"
                 Result = DeleteOne(sql)
                 DeleteCustomer = Result
-            End if            
+            'End if            
         End Function    
         'End Delete
 

@@ -31,7 +31,7 @@
         GetById()
     end if
     case "update"
-
+    UpdateCustomer()
    end select
     'Function
     'List
@@ -84,13 +84,35 @@
         
         'repository.AddCustomer customer.GetIdCustomer, customer.GetCompanyName(), customer.GetContactName(), customer.GetCity(), customer.GetPhone()
         call repository.AddCustomer(customer.GetIdCustomer, customer.GetCompanyName(), customer.GetContactName(), customer.GetCity(), customer.GetPhone())
+        Response.ContentType = "text/json"
         member("status") = "true"
         member.Flush
     End Function
 
+    Function UpdateCustomer()
+      Dim customer 
+      set customer = new Customer
+        '(id, company, name, city, phone)
+        customer.SetIdCustomer = Request.Form("CustomerId")
+        customer.SetCompanyName = Request.Form("CompanyName")
+        customer.SetContactName = Request.Form("ContactName")
+        customer.SetCity = Request.Form("CityName")
+        customer.SetPhone = Request.Form("Phone")
+        
+        'repository.AddCustomer customer.GetIdCustomer, customer.GetCompanyName(), customer.GetContactName(), customer.GetCity(), customer.GetPhone()
+        call repository.UpdateCustomer(customer.GetIdCustomer, customer.GetCompanyName(), customer.GetContactName(), customer.GetCity(), customer.GetPhone())
+        Response.ContentType = "text/json"
+        member("status") = "true"
+        member.Flush
+    End Function
+
+
     Function DeleteCustomer()
-      Response.Write("<br/> Delete: " + Request.Form("id"))
       set id = Request.Form("id")
       repository.DeleteCustomer(id)
+        
+        Response.ContentType = "text/json"
+        member("status") = "true"
+        member.Flush
     End Function
  %>

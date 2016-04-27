@@ -469,6 +469,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $("#btnAdd").click(function () {
                 $('#saveModal').modal('show');
                 $("#Id").removeAttr("readonly");
+                $(".box-body :input").val("")
             });
             //$('#saveModal').on('shown.bs.modal', function () {
                 
@@ -479,6 +480,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 if (modify != "" && modify != undefined) {
 
                     $.post("Controllers/CustomersController.asp?action=update", $(".box-body :input").serialize(), function (response) {
+                        
                         if (response.status == "true") {
                             listCustomers();
                             $('#saveModal').modal('hide');
