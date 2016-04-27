@@ -330,13 +330,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                       <input type="text" class="form-control" 
                                              name="CustomerId"
                                              id="Id" 
+                                             maxlength="5"
                                              placeholder="Customer ID">
                                   </div>
                                   <div class="form-group">
                                       <label for="txtCompanyName">Company Name</label>
                                       <input type="text" class="form-control" 
-                                             id="txtCompanyName" 
+                                             id="CompanyName" 
                                              name="CompanyName"
+                                             maxlength="40"
                                              placeholder="Company Name">
                                   </div>
                                   <div class="form-group">
@@ -344,22 +346,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                       <input type="text" class="form-control" 
                                              name="ContactName"
                                              placeholder="Contact Name" 
-                                             id="txtContactName">
+                                             maxlength="30"
+                                             id="ContactName" />
                                   </div>
                                   <div class="form-group">
                                       <label for="exampleInputFile">City Name</label>
                                       <input type="text"  class="form-control" 
-                                             id="txtCityName"
+                                             id="City"
+                                             maxlength="15"
                                              placeholder="City Name" 
-                                             name="CityName">
-
-                                      
+                                             name="CityName" />
                                   </div>
                                   <div class="form-group">
                                       <label for="exampleInputFile">Phone</label>
-                                      <input type="text" id="txtPhone" 
+                                      <input type="text" id="Phone" 
                                              placeholder="Phone" 
                                              class="form-control" 
+                                             maxlength="24"
                                              name="Phone">
                                   </div>
                               </div>
@@ -465,17 +468,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             $("#btnAdd").click(function () {
                 $('#saveModal').modal('show');
+                $("#Id").removeAttr("readonly");
             });
             //$('#saveModal').on('shown.bs.modal', function () {
                 
             //})
 
             $("#btnSave").click(function () {
-                $.post("Controllers/CustomersController.asp?action=save", $(".box-body :input").serialize(), function (response) {
-                    if (response.status == "true") {
-                        listCustomers();
-                    }
-                });
+                var modify = $("#Id").attr("readonly");
+                if (modify != "" && modify != undefined) {
+                    $.post("Controllers/CustomersController.asp?action=save", $(".box-body :input").serialize(), function (response) {
+                        if (response.status == "true") {
+                            listCustomers();
+                            $('#saveModal').modal('hide');
+                        }
+                    });
+                } else {
+                    $.post("Controllers/CustomersController.asp?action=update", $(".box-body :input").serialize(), function (response) {
+                        if (response.status == "true") {
+                            listCustomers();
+                            $('#saveModal').modal('hide');
+                        }
+                    });
+                }
             });
         });
 
@@ -490,7 +505,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $.get("Controllers/CustomersController.asp?action=get",
                 { id: $(element).data("custom-id") }, function (response) {
                     //Views and Response
+                    console.log(response);
+                    $("#Id").attr("readonly", "readonly");
 
+                    $("#Id").val(response.IdCustomer);
+                    $("#CompanyName").val(response.CompanyName);
+                    $("#ContactName").val(response.ContactName);
+                    $("#City").val(response.City);
+                    $("#Phone").val(response.Phone);
+                    $(element).data("custom-id")
 
                 });
         }

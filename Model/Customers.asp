@@ -42,7 +42,7 @@
         End Property
 
         public Property Get GetContactName()
-            ContactName = ContactName
+            GetContactName = ContactName
         End Property
 
         'Get and Set of IdCustomer

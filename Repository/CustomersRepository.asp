@@ -72,7 +72,6 @@
                     & "'" & name & "'," _
                     & "'" & city & "'," _
                     & "'" & phone & "');"
-                Response.Write(stmt)
                 Result = MakeInsert(stmt)
                 AddCustomer = Result
 
@@ -122,18 +121,13 @@
 
         'Search some Costumer
         Function SearchCustomer(id)
-            set validate = new Validations
-
-            'Validate id value
-            if validate.ValString(id) = false then
-                SearchCustomer = "Id "& id &" value isn´t string"
-            else
+                Dim stmt 
                 stmt = "SELECT * FROM customers WHERE customerID='" & id & "'"
                 Dim customersRecordSet
                 set customersRecordSet = SearchRecord(stmt) 
                 Dim customers
-
                 set customers = new Customer
+
                 customers.SetIdCustomer = customersRecordSet("CustomerID").Value
                 customers.SetCompanyName = customersRecordSet("CompanyName").Value
                 customers.SetContactName = customersRecordSet("ContactName").Value
@@ -144,6 +138,5 @@
                 set SearchCustomer = customers        
             End if
         End Function
-        'End Search
     End Class
 %>
